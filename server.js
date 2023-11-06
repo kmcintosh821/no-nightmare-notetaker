@@ -5,11 +5,13 @@ const fs = require('fs');
 const db = path.join(__dirname, './db/db.json');
 
 const app = express();
+const router = express.Router();
 const PORT = process.env.PORT || 3333;
 
 //HTML Routes
 
 app.use(express.static('public'));
+app.use(express.json());
 
 app.get('/', (req, res) => {
     
@@ -22,8 +24,6 @@ app.get('/notes', (req, res) => {
 })
 
 //API Routes
-
-const router = express.Router();
 
 router.route('/api/notes')
     .get((req, res) => {
